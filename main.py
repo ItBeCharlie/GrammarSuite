@@ -7,6 +7,8 @@ def main():
     grammar = Grammar(productions)
     print(grammar)
 
+    generate_selection_sets(grammar)
+
 
 def parse_file(file):
     productions = []
@@ -20,6 +22,13 @@ def parse_file(file):
         productions.append(Production(new_line))
 
     return productions
+
+
+def generate_selection_sets(grammar):
+    incomplete_productions = []
+    for production in grammar.productions:
+        incomplete_productions.append(str(production))
+    print(incomplete_productions)
 
 
 main()

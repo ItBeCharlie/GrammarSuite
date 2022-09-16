@@ -3,6 +3,7 @@ class Production:
         self.string = string
         self.left = string.split(' -> ')[0]
         self.right = string.split(' -> ')[1]
+        self.right = self.right.replace('^', '')
         self.right_tokens = self.right.split()
         self.selection_set = []
 
