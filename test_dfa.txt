@@ -1,0 +1,20 @@
+// (a|b)*(ab|ba)
+A
+C, E
+
+// Comment in a space
+
+A a B
+A b D
+        
+B a B
+B b C // Comment on a line
+
+C a E
+C b D
+
+D a E
+D b D
+
+E a B
+E b C
