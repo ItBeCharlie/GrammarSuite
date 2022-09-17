@@ -1,3 +1,6 @@
+from pyvis.network import Network
+
+
 class Dfa:
     def __init__(self, start_state, accept_states, table):
         self.start_state = start_state
@@ -110,3 +113,15 @@ class Dfa:
             file = f.readlines()
         f.close()
         return Dfa.init_from_list(file, trace)
+
+    def show(self):
+        print(self.table)
+        net = Network(directed=True)
+        net.set_edge_smooth('dynamic')
+        for state in self.table:
+            net.add_node(state, label=state)
+        for state in self.table:
+            for edge in self.table[state]:
+                net.add_edge(
+                    state, self.table[state][edge], label=edge, physics=False)
+        net.show('dfa.html')

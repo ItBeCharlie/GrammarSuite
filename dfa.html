@@ -50,8 +50,8 @@
         
 
         // parsing and collecting nodes and edges from the python
-        nodes = new vis.DataSet([{"id": 0, "label": 0, "shape": "dot"}, {"id": 1, "label": 1, "shape": "dot"}, {"id": 2, "label": 2, "shape": "dot"}]);
-        edges = new vis.DataSet([{"arrows": "to", "from": 0, "to": 1}, {"arrows": "to", "from": 2, "label": "Test", "to": 1}, {"arrows": "to", "from": 1, "label": "Test2", "to": 2}, {"arrows": "to", "from": 0, "to": 2}]);
+        nodes = new vis.DataSet([{"id": "A", "label": "A", "shape": "dot"}, {"id": "B", "label": "B", "shape": "dot"}, {"id": "C", "label": "C", "shape": "dot"}, {"id": "D", "label": "D", "shape": "dot"}, {"id": "E", "label": "E", "shape": "dot"}]);
+        edges = new vis.DataSet([{"arrows": "to", "from": "A", "label": "a", "physics": false, "to": "B"}, {"arrows": "to", "from": "A", "label": "b", "physics": false, "to": "D"}, {"arrows": "to", "from": "B", "label": "a", "physics": false, "to": "B"}, {"arrows": "to", "from": "B", "label": "b", "physics": false, "to": "C"}, {"arrows": "to", "from": "C", "label": "a", "physics": false, "to": "E"}, {"arrows": "to", "from": "C", "label": "b", "physics": false, "to": "D"}, {"arrows": "to", "from": "D", "label": "a", "physics": false, "to": "E"}, {"arrows": "to", "from": "D", "label": "b", "physics": false, "to": "D"}, {"arrows": "to", "from": "E", "label": "a", "physics": false, "to": "B"}, {"arrows": "to", "from": "E", "label": "b", "physics": false, "to": "C"}]);
 
         // adding nodes and edges to the graph
         data = {nodes: nodes, edges: edges};
