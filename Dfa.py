@@ -116,12 +116,16 @@ class Dfa:
 
     def show(self):
         print(self.table)
-        net = Network(directed=True)
-        net.set_edge_smooth('dynamic')
+        net = Network(height='100%', width='100%', directed=True)
+        net.toggle_physics(False)
+        net.set_edge_smooth('straightCross')
         for state in self.table:
-            net.add_node(state, label=state)
+            net.add_node(state, label=state, shape='circle')
         for state in self.table:
             for edge in self.table[state]:
                 net.add_edge(
                     state, self.table[state][edge], label=edge, physics=False)
-        net.show('dfa.html')
+        net.add_node('Start', label='Start', hidden=False,
+                     shape='circle', x='100')
+        net.add_edge('Start', self.start_state, physics=False)
+        net.save_graph('dfa.html')
