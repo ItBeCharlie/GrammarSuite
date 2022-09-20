@@ -6,6 +6,7 @@ class Dfa:
         self.start_state = start_state
         self.accept_states = accept_states
         self.table = table
+        self.net = Network(height='100%', width='100%', directed=True)
 
     def __str__(self):
         return 'Start State: ' + self.start_state + '\nAccept States: ' + str(self.accept_states) + '\nTable: ' + str(self.table)
@@ -114,18 +115,22 @@ class Dfa:
         f.close()
         return Dfa.init_from_list(file, trace)
 
-    def show(self):
+    def generate(self):
         print(self.table)
-        net = Network(height='100%', width='100%', directed=True)
-        net.toggle_physics(False)
-        net.set_edge_smooth('straightCross')
+        self.net = Network(height='100%', width='100%', directed=True)
+        self.net.toggle_physics(False)
+        self.net.set_edge_smooth('straightCross')
         for state in self.table:
-            net.add_node(state, label=state, shape='circle')
+            self.net.add_node(state, label=state, shape='circle')
         for state in self.table:
             for edge in self.table[state]:
-                net.add_edge(
+                self.net.add_edge(
                     state, self.table[state][edge], label=edge, physics=False)
-        net.add_node('Start', label='Start', hidden=False,
-                     shape='circle', x='100')
-        net.add_edge('Start', self.start_state, physics=False)
-        net.save_graph('dfa.html')
+        self.net.add_node('Start', label='Start', hidden=False,
+                          shape='circle', x='100')
+        self.net.add_edge('Start', self.start_state, physics=False)
+        self.net.save_graph('dfa.html')
+
+    def show(self):
+        self.generate()
+        self.net.show('dfa.html')
